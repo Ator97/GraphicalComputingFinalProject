@@ -1,0 +1,7 @@
+D:\3d vs music\3d\BASE PROJECT\SV\model\Rh Salvaged Boat  and Manor House Whitewashed Mirror\model\t$m$p$$$\Manor House Whitewashed Mirror.max
+D:\3d vs music\3d\BASE PROJECT\SV\model\Rh Salvaged Boat  and Manor House Whitewashed Mirror\model\t$m$p$$$\MAXFILES.TXT
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Manor House Whitewashed Mirror\pic.jpg
+D:\3d vs music\3d\texture\HDRI - карты\3ddd1304956573\000.hdr
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Manor House Whitewashed Mirror\textures\PlywoodOld0066_8_L.jpg
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Manor House Whitewashed Mirror\textures\PlywoodOld0066_8_L_ spec.jpg
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Manor House Whitewashed Mirror\textures\PlywoodOld0066_8_L_ bump.jpg

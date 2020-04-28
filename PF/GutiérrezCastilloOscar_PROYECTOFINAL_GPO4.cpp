@@ -94,10 +94,10 @@ int main( )
     //Model ourModel( (char *)"Models/Tienda/tienda.obj");
 	//Model model2((char *)"Models/Gabinete1/gabinete1.obj");
 	//Model gabinete2((char *)"Models/Gabinete2/gabinete2.obj");
-	//Model sofa((char *)"Models/Sofa/sofa.obj");
-	//Model calentador((char *)"Models/Calentador/calentador.obj");
-	//Model mesa((char *)"Models/Mesa/mesa.obj");
-	//Model espejo((char *)"Models/Espejo/espejo.obj");
+	Model sofa((char *)"Models/Sofa/sofa.obj");
+	Model calentador((char *)"Models/Calentador/calentador.obj");
+	Model mesa((char *)"Models/Mesa/mesa.obj");
+	Model espejo((char *)"Models/Espejo/espejo.obj");
 
     // Draw in wireframe
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
@@ -127,7 +127,7 @@ int main( )
         glUniformMatrix4fv( glGetUniformLocation( shader.Program, "view" ), 1, GL_FALSE, glm::value_ptr( view ) );
         
         // Casa
-  //      glm::mat4 model(1);
+        //glm::mat4 model(1);
   //      model = glm::translate( model, glm::vec3( 0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
   //      model = glm::scale( model, glm::vec3( 0.02f, 0.02f, 0.02f ) );	// It's a bit too big for our scene, so scale it down
 		////model = glm::rotate(model, (float)glfwGetTime(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -151,39 +151,39 @@ int main( )
 		//gabinete2.Draw(shader);
 
 		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//sofa.Draw(shader);
+		glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		sofa.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.00f, -1.33f, 0.40f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//calentador.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.00f, -1.33f, 0.40f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		calentador.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//mesa.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		mesa.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//espejo.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		espejo.Draw(shader);
 
 
         // Swap the buffers

@@ -1,0 +1,8 @@
+D:\3d vs music\3d\BASE PROJECT\SV\model\Rh Salvaged Boat  and Manor House Whitewashed Mirror\model\t$m$p$$$\Salvaged Boat Wood Leaner Mirror.max
+D:\3d vs music\3d\BASE PROJECT\SV\model\Rh Salvaged Boat  and Manor House Whitewashed Mirror\model\t$m$p$$$\MAXFILES.TXT
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Salvaged Boat Wood Leaner Mirror\pic.jpg
+D:\3d vs music\3d\texture\HDRI - карты\3ddd1304956573\000.hdr
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Salvaged Boat Wood Leaner Mirror\textures\WoodPlanksOverlapping0033_1_L_def.jpg
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Salvaged Boat Wood Leaner Mirror\textures\WoodPlanksOverlapping0033_1_L_spec.jpg
+D:\3d vs music\3d\BASE PROJECT\SV\ART roomers\Project\model\Salvaged Boat Wood Leaner Mirror\textures\WoodPlanksOverlapping0033_1_L_bump.jpg
+\\Listudio2\f\3d\project\attik\textures\etno _ specular.jpg

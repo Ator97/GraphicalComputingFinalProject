@@ -102,15 +102,15 @@ int main( )
 	Shader shader2("Shaders/modelLoading.vs", "Shaders/modelLoading.frag");
 
     // Load models 
-    //Model ourModel( (char *)"Models/Tienda/tienda.obj");
+    Model ourModel( (char *)"Models/Tienda/tienda.obj");
 	//Model model2((char *)"Models/Gabinete1/gabinete1.obj");
 	//Model gabinete2((char *)"Models/Gabinete2/gabinete2.obj");
 	Model sofa((char *)"Models/Sofa/sofa.obj");
-	//Model calentador((char *)"Models/Calentador/calentador.obj");
-	//Model mesa((char *)"Models/Mesa/mesa.obj");
-	//Model espejo((char *)"Models/Espejo/espejo.obj");
-	//Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
-	//Model puertaMadera((char *)"Models/PuertaMadera/puertaMadera.obj");
+	Model calentador((char *)"Models/Calentador/calentador.obj");
+	Model mesa((char *)"Models/Mesa/mesa.obj");
+	Model espejo((char *)"Models/Espejo/espejo.obj");
+	Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
+	Model puertaMadera((char *)"Models/PuertaMadera/puertaMadera.obj");
 
     // Draw in wireframe
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
@@ -174,12 +174,12 @@ int main( )
 
 	// Load textures
 	vector<const GLchar*> faces;
-	faces.push_back("SkyBox/right.tga");
-	faces.push_back("SkyBox/left.tga");
-	faces.push_back("SkyBox/top.tga");
-	faces.push_back("SkyBox/bottom.tga");
-	faces.push_back("SkyBox/back.tga");
-	faces.push_back("SkyBox/front.tga");
+	faces.push_back("SkyBox/posx.jpg");
+	faces.push_back("SkyBox/negx.jpg");
+	faces.push_back("SkyBox/posy.jpg");
+	faces.push_back("SkyBox/negy.jpg");
+	faces.push_back("SkyBox/posz.jpg");
+	faces.push_back("SkyBox/negz.jpg");
 
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
@@ -209,14 +209,14 @@ int main( )
         
 		//--Model section --//
         //Casa
-		//glm::mat4 model(1);
-		//model = glm::translate( model, glm::vec3( -0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale( model, glm::vec3( 0.02f, 0.02f, 0.02f ) );	// It's a bit too big for our scene, so scale it down
-		////model = glm::rotate(model, (float)glfwGetTime(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv( glGetUniformLocation( shader.Program, "model" ), 1, GL_FALSE, glm::value_ptr( model ) );
-		//ourModel.Draw( shader );
+		glm::mat4 model(1);
+		model = glm::translate( model, glm::vec3( -0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale( model, glm::vec3( 0.02f, 0.02f, 0.02f ) );	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, (float)glfwGetTime(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv( glGetUniformLocation( shader.Program, "model" ), 1, GL_FALSE, glm::value_ptr( model ) );
+		ourModel.Draw( shader );
 
-		////Gavinete1
+		//////Gavinete1
 		//model = glm::mat4(1.0f);
 		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
 		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
@@ -232,8 +232,8 @@ int main( )
 		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
 		//gabinete2.Draw(shader);
 
-		//model = glm::mat4(1.0f);
-		glm::mat4 model(1);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
 		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -241,66 +241,66 @@ int main( )
 		sofa.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//calentador.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		calentador.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//mesa.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		mesa.Draw(shader);
 
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//espejo.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		espejo.Draw(shader);
 
 		//--Animation section--//
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.20f, -1.74f, 0.45f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//puertaVidrio.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.20f, -1.74f, 0.45f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		puertaVidrio.Draw(shader);
 
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.3f, -1.0f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(rot2), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//puertaMadera.Draw(shader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.3f, -1.0f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(rot2), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		puertaMadera.Draw(shader);
 
 		//--Skybox section--//
 
 		// Draw skybox as last
-		glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
-		SkyBoxshader.Use();
-		view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
-		glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		//glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
+		//SkyBoxshader.Use();
+		//view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
+		//glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		//glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-		//// skybox cube
-		glBindVertexArray(skyboxVAO);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		glBindVertexArray(0);
-		glDepthFunc(GL_LESS); // Set depth function back to default
+		////// skybox cube
+		//glBindVertexArray(skyboxVAO);
+		//glActiveTexture(GL_TEXTURE1);
+		//glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		//glBindVertexArray(0);
+		//glDepthFunc(GL_LESS); // Set depth function back to default
 
         // Swap the buffers
         glfwSwapBuffers( window );

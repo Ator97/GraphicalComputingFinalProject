@@ -25,6 +25,13 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd carpet.jpg
 Ni 1.00
+newmtl lambert52SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd door.tga
+Ni 1.00
 newmtl lambert54SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -51,7 +58,14 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd mostaza1_texture.png
+map_Kd mostaza1_texture.jpg
+Ni 1.00
+newmtl lambert69SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white1_texture.jpg
 Ni 1.00
 newmtl lambert70SG
 illum 4
@@ -59,6 +73,34 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd green1_texture.jpg
+Ni 1.00
+newmtl lambert71SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd office1_texture.jpg
+Ni 1.00
+newmtl lambert76SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd black1_texture.jpg
+Ni 1.00
+newmtl lambert77SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd blue1_texture.jpg
+Ni 1.00
+newmtl lambert80SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd marmol1_texture.jpg
 Ni 1.00
 newmtl low:Can
 illum 4

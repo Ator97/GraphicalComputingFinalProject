@@ -1,5 +1,7 @@
 // Std. Includes
 #include <string>
+#include <iostream>
+#include <cmath>
 
 // GLEW
 #include <GL/glew.h>
@@ -32,16 +34,21 @@ void MouseCallback( GLFWwindow *window, double xPos, double yPos );
 void DoMovement( );
 
 // Camera
-Camera camera( glm::vec3( 0.0f, 0.0f, 3.0f ) );
+Camera camera( glm::vec3( 0.0f, 0.0f, 0.0f ) );
 GLfloat lastX = WIDTH / 2.0;
 GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
 bool firstMouse = true;
 float rot = 180.0f;
-float rot2 = 180.0f;
+float rotY = -0.6f;
+float rotX = 0.0f;
+float limN = -0.037;
+float limP = 0.037;
 
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
+
+
 
 int main( )
 {
@@ -94,6 +101,10 @@ int main( )
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+
+
+
+
 	// Setup and compile our shaders
 	Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
@@ -103,85 +114,25 @@ int main( )
 
     // Load models 
     Model ourModel( (char *)"Models/Tienda/tienda.obj");
-	//Model model2((char *)"Models/Gabinete1/gabinete1.obj");
-	//Model gabinete2((char *)"Models/Gabinete2/gabinete2.obj");
+	Model model2((char *)"Models/Gabinete1/gabinete1.obj");
+	Model gabinete2((char *)"Models/Gabinete2/gabinete2.obj");
 	Model sofa((char *)"Models/Sofa/sofa.obj");
 	Model calentador((char *)"Models/Calentador/calentador.obj");
 	Model mesa((char *)"Models/Mesa/mesa.obj");
 	Model espejo((char *)"Models/Espejo/espejo.obj");
+	Model limpieza((char *)"Models/Limpieza/Limpieza.obj");
+	Model cocina((char *)"Models/Cocina/cocina.obj");
+	Model mesa_restaurant((char *)"Models/mesa_restaurant/mesa_restaurant.obj");
+	Model arcade((char *)"Models/arcade/arcade.obj");
+	Model silla((char *)"Models/Silla/silla.obj");
 	Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
-	Model puertaMadera((char *)"Models/PuertaMadera/puertaMadera.obj");
+
+
+	////Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
 
     // Draw in wireframe
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
-
-	GLfloat skyboxVertices[] = {
-		// Positions
-		-1.0f,  1.0f, -1.0f,
-		-1.0f, -1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-		1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
-
-		-1.0f, -1.0f,  1.0f,
-		-1.0f, -1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f, -1.0f,
-		-1.0f,  1.0f,  1.0f,
-		-1.0f, -1.0f,  1.0f,
-
-		1.0f, -1.0f, -1.0f,
-		1.0f, -1.0f,  1.0f,
-		1.0f,  1.0f,  1.0f,
-		1.0f,  1.0f,  1.0f,
-		1.0f,  1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-
-		-1.0f, -1.0f,  1.0f,
-		-1.0f,  1.0f,  1.0f,
-		1.0f,  1.0f,  1.0f,
-		1.0f,  1.0f,  1.0f,
-		1.0f, -1.0f,  1.0f,
-		-1.0f, -1.0f,  1.0f,
-
-		-1.0f,  1.0f, -1.0f,
-		1.0f,  1.0f, -1.0f,
-		1.0f,  1.0f,  1.0f,
-		1.0f,  1.0f,  1.0f,
-		-1.0f,  1.0f,  1.0f,
-		-1.0f,  1.0f, -1.0f,
-
-		-1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f,  1.0f,
-		1.0f, -1.0f, -1.0f,
-		1.0f, -1.0f, -1.0f,
-		-1.0f, -1.0f,  1.0f,
-		1.0f, -1.0f,  1.0f
-	};
-
-
-	//SkyBox
-	GLuint skyboxVBO, skyboxVAO;
-	glGenVertexArrays(1, &skyboxVAO);
-	glGenBuffers(1, &skyboxVBO);
-	glBindVertexArray(skyboxVAO);
-	glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid *)0);
-
-	// Load textures
-	vector<const GLchar*> faces;
-	faces.push_back("SkyBox/posx.jpg");
-	faces.push_back("SkyBox/negx.jpg");
-	faces.push_back("SkyBox/posy.jpg");
-	faces.push_back("SkyBox/negy.jpg");
-	faces.push_back("SkyBox/posz.jpg");
-	faces.push_back("SkyBox/negz.jpg");
-
-	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -198,7 +149,7 @@ int main( )
         DoMovement( );
         
         // Clear the colorbuffer
-        glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
+        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         
         shader.Use( );
@@ -207,106 +158,129 @@ int main( )
         glUniformMatrix4fv( glGetUniformLocation( shader.Program, "projection" ), 1, GL_FALSE, glm::value_ptr( projection ) );
         glUniformMatrix4fv( glGetUniformLocation( shader.Program, "view" ), 1, GL_FALSE, glm::value_ptr( view ) );
         
+
+
 		//--Model section --//
-        //Casa
-		glm::mat4 model(1);
-		model = glm::translate( model, glm::vec3( -0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale( model, glm::vec3( 0.02f, 0.02f, 0.02f ) );	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, (float)glfwGetTime(75.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv( glGetUniformLocation( shader.Program, "model" ), 1, GL_FALSE, glm::value_ptr( model ) );
-		ourModel.Draw( shader );
 
-		//////Gavinete1
-		//model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//model2.Draw(shader);
+		//Casa
+			glm::mat4 model(1);
+			model = glm::translate( model, glm::vec3( -0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale( model, glm::vec3( 0.02f, 0.02f, 0.02f ) );	// It's a bit too big for our scene, so scale it down
+			glUniformMatrix4fv( glGetUniformLocation( shader.Program, "model" ), 1, GL_FALSE, glm::value_ptr( model ) );
+			ourModel.Draw( shader );
 
-		////Gavinete2
-		//model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//gabinete2.Draw(shader);
+		//Gavinete1
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			model2.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		sofa.Draw(shader);
+		//Gavinete2
+			model = glm::mat4(1.0f);
+			model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			gabinete2.Draw(shader);
 
+		////Sofa
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			sofa.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		calentador.Draw(shader);
+		//Calentador
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			calentador.Draw(shader);
 
+		//Mesa
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			mesa.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		mesa.Draw(shader);
+		//Espejo
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			espejo.Draw(shader);
 
+		//Limpieza
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.35f, -1.33f, -0.15f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.025f));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			limpieza.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		espejo.Draw(shader);
+		//Cocina
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(-0.12f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.020));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			cocina.Draw(shader);
+
+		//Mesa Restaurant
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.0f, -1.75f, -0.1f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			mesa_restaurant.Draw(shader);
+
+		////Arcade
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			arcade.Draw(shader);
 
 		//--Animation section--//
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(rotX, -1.75f, rotY)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			silla.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.20f, -1.74f, 0.45f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		puertaVidrio.Draw(shader);
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(-0.20f, -1.74f, 0.45f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(rot), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+			puertaVidrio.Draw(shader);
 
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.3f, -1.0f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0190f, 0.019f, 0.0125f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(rot2), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		puertaMadera.Draw(shader);
 
-		//--Skybox section--//
 
-		// Draw skybox as last
-		//glDepthFunc(GL_LEQUAL);  // Change depth function so depth test passes when values are equal to depth buffer's content
-		//SkyBoxshader.Use();
-		//view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
-		//glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		//glUniformMatrix4fv(glGetUniformLocation(SkyBoxshader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-
-		////// skybox cube
-		//glBindVertexArray(skyboxVAO);
-		//glActiveTexture(GL_TEXTURE1);
-		//glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
-		//glBindVertexArray(0);
-		//glDepthFunc(GL_LESS); // Set depth function back to default
 
         // Swap the buffers
         glfwSwapBuffers( window );
     }
-	glDeleteVertexArrays(1, &skyboxVAO);
-	glDeleteBuffers(1, &skyboxVBO);
+
     glfwTerminate( );
     return 0;
 }
@@ -315,45 +289,63 @@ int main( )
 void DoMovement( )
 {
     // Camera controls
-    if ( keys[GLFW_KEY_W] || keys[GLFW_KEY_UP] )
+    if (  keys[GLFW_KEY_UP] )
     {
         camera.ProcessKeyboard( FORWARD, deltaTime );
     }
     
-    if ( keys[GLFW_KEY_S] || keys[GLFW_KEY_DOWN] )
+    if ( keys[GLFW_KEY_DOWN] )
     {
         camera.ProcessKeyboard( BACKWARD, deltaTime );
     }
     
-    if ( keys[GLFW_KEY_A] || keys[GLFW_KEY_LEFT] )
+    if ( keys[GLFW_KEY_LEFT] )
     {
         camera.ProcessKeyboard( LEFT, deltaTime );
     }
     
-    if ( keys[GLFW_KEY_D] || keys[GLFW_KEY_RIGHT] )
+    if (  keys[GLFW_KEY_RIGHT] )
     {
         camera.ProcessKeyboard( RIGHT, deltaTime );
     }
-	if (keys[GLFW_KEY_O] )
+	if (keys[GLFW_KEY_Q] )
 	{
 		if (rot <=260)
 			rot = rot + 0.1;
 	}
-	if (keys[GLFW_KEY_P])
+	if (keys[GLFW_KEY_W])
 	{
 		if (rot >= 180)
 			rot = rot - 0.1;
 	}
 
-	if (keys[GLFW_KEY_K])
+	if (keys[GLFW_KEY_A])
 	{
-		if (rot2 <= 260)
-			rot2 = rot2 + 0.1;
+		printf("Para A, rotX vale: %d",rotX);
+		if (rotX > limN)
+			rotX = rotX - 0.01;
 	}
-	if (keys[GLFW_KEY_L])
+	if (keys[GLFW_KEY_S])
 	{
-		if (rot2 >= 180)
-			rot2 = rot2 - 0.1;
+		printf("Para S, rotX vale: %d", rotX);
+		if (rotX < limP)
+			rotX = rotX + 0.01;
+	}
+	if (keys[GLFW_KEY_D]){
+		printf("Para D, rotX vale: %d", rotY);
+		if (rotY < -0.5 ) {
+			rotY = rotY + 0.01;
+			limP = limP + 0.001; //Abrimos abanico de X
+			limN = limN - 0.001;
+		}
+	}
+	if (keys[GLFW_KEY_F]){
+		printf("Para F, rotX vale: %d", rotY);
+		if (rotY > -0.7) {
+			rotY = rotY - 0.01;
+			limP = limP - 0.001; //Cerramos abanico de X
+			limN = limN + 0.001;
+		}
 	}
 }
 

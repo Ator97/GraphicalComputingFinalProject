@@ -58,7 +58,7 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd mostaza1_texture.jpg
+map_Kd marmol1_texture.jpg
 Ni 1.00
 newmtl lambert69SG
 illum 4

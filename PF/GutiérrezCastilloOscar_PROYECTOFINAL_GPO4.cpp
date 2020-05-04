@@ -194,17 +194,17 @@ int main()
 	Model PiernaIzq((char*)"Models/hora.obj");
 	Model Torso((char*)"Models/reloj.obj");
 	Model ourModel((char *)"Models/Tienda/tienda.obj");
-	Model model2((char *)"Models/Gabinete1/gabinete1.obj");
-	Model gabinete2((char *)"Models/Gabinete1/gabinete1.obj");
-	Model sofa((char *)"Models/Sofa/sofa.obj");
-	Model calentador((char *)"Models/Calentador/calentador.obj");
-	Model mesa((char *)"Models/Mesa/mesa.obj");
-	Model espejo((char *)"Models/Espejo/espejo.obj");
-	Model limpieza((char *)"Models/Limpieza/Limpieza.obj");
-	Model cocina((char *)"Models/Cocina/cocina.obj");
-	Model mesa_restaurant((char *)"Models/mesa_restaurant/mesa_restaurant.obj");
-	Model arcade((char *)"Models/arcade/arcade.obj");
-	Model silla((char *)"Models/Silla/silla.obj");
+	//Model model2((char *)"Models/Gabinete1/gabinete1.obj");
+	//Model gabinete2((char *)"Models/Gabinete1/gabinete1.obj");
+	//Model sofa((char *)"Models/Sofa/sofa.obj");
+	//Model calentador((char *)"Models/Calentador/calentador.obj");
+	//Model mesa((char *)"Models/Mesa/mesa.obj");
+	//Model espejo((char *)"Models/Espejo/espejo.obj");
+	//Model limpieza((char *)"Models/Limpieza/Limpieza.obj");
+	//Model cocina((char *)"Models/Cocina/cocina.obj");
+	//Model mesa_restaurant((char *)"Models/mesa_restaurant/mesa_restaurant.obj");
+	//Model arcade((char *)"Models/arcade/arcade.obj");
+	//Model silla((char *)"Models/Silla/silla.obj");
 	Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
 
 	
@@ -399,6 +399,164 @@ int main()
 
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
+
+	GLfloat testVertices[] =
+	{
+		// Positions            // Normals              // Texture Coords
+		//inf izq
+		-0.5f, -0.5f, -0.5f,    0.0f,  0.0f, -1.0f,     0.0f,  0.0f,
+		0.5f, -0.5f, -0.5f,     0.0f,  0.0f, -1.0f,     1.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,     1.0f,  1.0f,
+		0.5f,  0.5f, -0.5f,     0.0f,  0.0f, -1.0f,     1.0f,  1.0f,
+		-0.5f,  0.5f, -0.5f,    0.0f,  0.0f, -1.0f,     0.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f,    0.0f,  0.0f, -1.0f,     0.0f,  0.0f,
+
+		-0.5f, -0.5f,  0.5f,    0.0f,  0.0f,  1.0f,     0.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,     0.0f,  0.0f,  1.0f,     1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,     1.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,     0.0f,  0.0f,  1.0f,  	1.0f,  1.0f,
+		-0.5f,  0.5f,  0.5f,    0.0f,  0.0f,  1.0f,     0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,    0.0f,  0.0f,  1.0f,     0.0f,  0.0f,
+
+		-0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  1.0f,
+		-0.5f, -0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    0.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,    -1.0f,  0.0f,  0.0f,    1.0f,  0.0f,
+
+		0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,     1.0f,  0.0f,
+		0.5f,  0.5f, -0.5f,     1.0f,  0.0f,  0.0f,     1.0f,  1.0f,
+		0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,     0.0f,  1.0f,
+		0.5f, -0.5f, -0.5f,     1.0f,  0.0f,  0.0f,     0.0f,  1.0f,
+		0.5f, -0.5f,  0.5f,     1.0f,  0.0f,  0.0f,     0.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,     1.0f,  0.0f,  0.0f,     1.0f,  0.0f,
+
+		-0.5f, -0.5f, -0.5f,    0.0f, -1.0f,  0.0f,     0.0f,  1.0f,
+		0.5f, -0.5f, -0.5f,     0.0f, -1.0f,  0.0f,     1.0f,  1.0f,
+		0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,     1.0f,  0.0f,
+		0.5f, -0.5f,  0.5f,     0.0f, -1.0f,  0.0f,     1.0f,  0.0f,
+		-0.5f, -0.5f,  0.5f,    0.0f, -1.0f,  0.0f,     0.0f,  0.0f,
+		-0.5f, -0.5f, -0.5f,    0.0f, -1.0f,  0.0f,     0.0f,  1.0f,
+
+		-0.5f,  0.5f, -0.5f,    0.0f,  1.0f,  0.0f,     0.0f,  1.0f,
+		0.5f,  0.5f, -0.5f,     0.0f,  1.0f,  0.0f,     1.0f,  1.0f,
+		0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,     1.0f,  0.0f,
+		0.5f,  0.5f,  0.5f,     0.0f,  1.0f,  0.0f,     1.0f,  0.0f,
+		-0.5f,  0.5f,  0.5f,    0.0f,  1.0f,  0.0f,     0.0f,  0.0f,
+		-0.5f,  0.5f, -0.5f,    0.0f,  1.0f,  0.0f,     0.0f,  1.0f
+	};
+
+
+	GLuint testIndices[] =
+	{  // Note that we start from 0!
+		0,1,2,
+		1,2,3,
+
+		4,5,7,
+		5,6,7,
+
+		8,9,11,
+		9,10,11,
+
+		12,13,15,
+		13,14,15,
+	};
+
+	// First, set the container's VAO (and VBO)
+	GLuint testVBO, testVAO, testEBO;
+	glGenVertexArrays(1, &testVAO);
+	glGenBuffers(1, &testVBO);
+	glGenBuffers(1, &testEBO);
+
+	glBindVertexArray(testVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, testVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(testVertices), testVertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, testEBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(testIndices), testIndices, GL_STATIC_DRAW);
+
+	// Position attribute
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
+	glEnableVertexAttribArray(0);
+	// Normals attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(1);
+	// Texture Coordinate attribute
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
+	glEnableVertexAttribArray(2);
+	glBindVertexArray(0);
+
+	// Load textures
+	GLuint texture1;
+	glGenTextures(1, &texture1);
+	GLuint texture2;
+	glGenTextures(1, &texture2);
+	GLuint texture3;
+	glGenTextures(1, &texture3);
+	int textureWidth, textureHeight, nrChannels;
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char *image;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+
+	// Diffuse map
+	image = stbi_load("../textures/marmol1_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture1);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("../textures/wood4_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("../textures/roof.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture3);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+	
+
+	//// Set texture units
+	//lightingShader.Use();
+	//glUniform1i(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0);
+
+
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
 
 	// Game loop
@@ -415,7 +573,7 @@ int main()
 		animacion();
 
 		// Clear the colorbuffer
-		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+		glClearColor(1.0f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// Use cooresponding shader when setting uniforms/drawing objects
@@ -438,7 +596,7 @@ int main()
 
 		// Point light 1
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].ambient"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].ambient"), 0.25f, 0.25f, 0.25f);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].diffuse"), LightP1.x, LightP1.y, LightP1.z);
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[0].specular"), LightP1.x, LightP1.y, LightP1.z);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[0].constant"), 1.0f);
@@ -447,27 +605,27 @@ int main()
 
 		// Point light 2
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].ambient"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].diffuse"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].specular"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].ambient"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].diffuse"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].specular"), 0.25f, 0.25f, 0.25f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].constant"), 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].quadratic"), 0.032f);
 
 		// Point light 3
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].ambient"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].diffuse"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].specular"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].ambient"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].diffuse"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[2].specular"), 0.25f, 0.25f, 0.25f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].constant"), 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[2].quadratic"), 0.032f);
 
 		// Point light 4
 		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].diffuse"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].specular"), 0.5f, 0.5f, 0.5f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].ambient"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].diffuse"), 0.25f, 0.25f, 0.25f);
+		glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[3].specular"), 0.25f, 0.25f, 0.25f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].constant"), 1.0f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].linear"), 0.09f);
 		glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[3].quadratic"), 0.032f);
@@ -500,14 +658,84 @@ int main()
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture1);
+
+		glBindVertexArray(testVAO);
+		glm::mat4 model(1);              //Fondo
+		//model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.450f)); 
+		//model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.001f));
+		////model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Pared Izquierda
+		model = glm::translate(model, glm::vec3(-0.63f, -1.33f, -0.000f));
+		model = glm::scale(model, glm::vec3(0.001f, 0.84f, 0.901f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Pared Derecha
+		model = glm::translate(model, glm::vec3(0.44f, -1.33f, -0.000f));
+		model = glm::scale(model, glm::vec3(0.001f, 0.84f, 0.901f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente I I
+		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, 0.450f));
+		model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.005f));
+		//model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		glBindTexture(GL_TEXTURE_2D, texture2);
+
+		//model = glm::mat4(1.0f);      //Piso I I
+		//model = glm::translate(model, glm::vec3(-0.304f, -1.33f, -0.000f));
+		//model = glm::scale(model, glm::vec3(0.652f, 0.009f, 0.901f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);      //Piso I II
+		//model = glm::translate(model, glm::vec3(0.23f, -1.33f, 0.069f));
+		//model = glm::scale(model, glm::vec3(0.416f, 0.009f, 0.765f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);      //Piso I III
+		//model = glm::translate(model, glm::vec3(0.385f, -1.33f, -0.37f));
+		//model = glm::scale(model, glm::vec3(0.11f, 0.009f, 0.15f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Piso 
+		model = glm::translate(model, glm::vec3(-0.095f, -1.75f, 0.001f));
+		model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//glBindTexture(GL_TEXTURE_2D, texture3);
+
+		//model = glm::mat4(1.0f);      //Techo 
+		//model = glm::translate(model, glm::vec3(-0.095f, -0.91f, 0.001f));
+		//model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		glBindVertexArray(0);
+
 
 		glBindVertexArray(VAO);
+		model = glm::mat4(1.0f);
+
 		glm::mat4 tmp = glm::mat4(1.0f); //Temp
 
 		//Carga de modelo 
 		//Personaje
 		view = camera.GetViewMatrix();
-		glm::mat4 model(1);
+		//glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(95.005f, -2.5f, 45.37f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -542,102 +770,102 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		ourModel.Draw(lightingShader);
 
-		//Gavinete1
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		model2.Draw(lightingShader);
+		////Gavinete1
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//model2.Draw(lightingShader);
 
-		//Gavinete2
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		gabinete2.Draw(lightingShader);
+		////Gavinete2
+		//model = glm::mat4(1.0f);
+		//model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//gabinete2.Draw(lightingShader);
 
-		//Sofa
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		sofa.Draw(lightingShader);
+		////Sofa
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//sofa.Draw(lightingShader);
 
-		//Calentador
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		calentador.Draw(lightingShader);
+		////Calentador
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//calentador.Draw(lightingShader);
 
-		//Mesa
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		mesa.Draw(lightingShader);
+		////Mesa
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//mesa.Draw(lightingShader);
 
-		//Espejo
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		espejo.Draw(lightingShader);
+		////Espejo
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//espejo.Draw(lightingShader);
 
-		//Limpieza
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.35f, -1.33f, -0.15f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.025f));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		limpieza.Draw(lightingShader);
+		////Limpieza
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(0.35f, -1.33f, -0.15f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.025f));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//limpieza.Draw(lightingShader);
 
-		//Cocina
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.12f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.020));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		cocina.Draw(lightingShader);
+		////Cocina
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(-0.12f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.020));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//cocina.Draw(lightingShader);
 
-		//Mesa Restaurant
-			model = glm::mat4(1.0f);
-			//glm::mat4 model(1);
-			model = glm::translate(model, glm::vec3(0.0f, -1.75f, -0.1f)); // Translate it down a bit so it's at the center of the scene
-			model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-			mesa_restaurant.Draw(lightingShader);
+		////Mesa Restaurant
+		//	model = glm::mat4(1.0f);
+		//	//glm::mat4 model(1);
+		//	model = glm::translate(model, glm::vec3(0.0f, -1.75f, -0.1f)); // Translate it down a bit so it's at the center of the scene
+		//	model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+		//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//	mesa_restaurant.Draw(lightingShader);
 
-		//Arcade
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arcade.Draw(lightingShader);
+		////Arcade
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arcade.Draw(lightingShader);
 
-		////--Animation section--//
-		model = glm::mat4(1.0f);
-		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(rotX, -1.75f, rotY)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		silla.Draw(lightingShader);
+		//////--Animation section--//
+		//model = glm::mat4(1.0f);
+		////glm::mat4 model(1);
+		//model = glm::translate(model, glm::vec3(rotX, -1.75f, rotY)); // Translate it down a bit so it's at the center of the scene
+		//model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//silla.Draw(lightingShader);
 
 		model = glm::mat4(1.0f);
 		//glm::mat4 model(1);

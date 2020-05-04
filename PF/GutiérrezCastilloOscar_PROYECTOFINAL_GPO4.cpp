@@ -194,17 +194,17 @@ int main()
 	Model PiernaIzq((char*)"Models/hora.obj");
 	Model Torso((char*)"Models/reloj.obj");
 	Model ourModel((char *)"Models/Tienda/tienda.obj");
-	//Model model2((char *)"Models/Gabinete1/gabinete1.obj");
-	//Model gabinete2((char *)"Models/Gabinete1/gabinete1.obj");
-	//Model sofa((char *)"Models/Sofa/sofa.obj");
-	//Model calentador((char *)"Models/Calentador/calentador.obj");
-	//Model mesa((char *)"Models/Mesa/mesa.obj");
-	//Model espejo((char *)"Models/Espejo/espejo.obj");
-	//Model limpieza((char *)"Models/Limpieza/Limpieza.obj");
-	//Model cocina((char *)"Models/Cocina/cocina.obj");
-	//Model mesa_restaurant((char *)"Models/mesa_restaurant/mesa_restaurant.obj");
-	//Model arcade((char *)"Models/arcade/arcade.obj");
-	//Model silla((char *)"Models/Silla/silla.obj");
+	Model model2((char *)"Models/Gabinete1/gabinete1.obj");
+	Model gabinete2((char *)"Models/Gabinete1/gabinete1.obj");
+	Model sofa((char *)"Models/Sofa/sofa.obj");
+	Model calentador((char *)"Models/Calentador/calentador.obj");
+	Model mesa((char *)"Models/Mesa/mesa.obj");
+	Model espejo((char *)"Models/Espejo/espejo.obj");
+	Model limpieza((char *)"Models/Limpieza/Limpieza.obj");
+	Model cocina((char *)"Models/Cocina/cocina.obj");
+	Model mesa_restaurant((char *)"Models/mesa_restaurant/mesa_restaurant.obj");
+	Model arcade((char *)"Models/arcade/arcade.obj");
+	Model silla((char *)"Models/Silla/silla.obj");
 	Model puertaVidrio((char *)"Models/PuertaVidrio/puertaVidrio.obj");
 
 	
@@ -494,6 +494,10 @@ int main()
 	glGenTextures(1, &texture2);
 	GLuint texture3;
 	glGenTextures(1, &texture3);
+	GLuint texture4;
+	glGenTextures(1, &texture4);
+	GLuint texture5;
+	glGenTextures(1, &texture5);
 	int textureWidth, textureHeight, nrChannels;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char *image;
@@ -519,7 +523,7 @@ int main()
 	}
 	stbi_image_free(image);
 
-	image = stbi_load("../textures/wood4_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	image = stbi_load("../textures/wood3_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
@@ -551,6 +555,37 @@ int main()
 	}
 	stbi_image_free(image);
 	
+	image = stbi_load("../textures/wood2_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture4);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+	image = stbi_load("../textures/glass1_texture.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
 
 	//// Set texture units
 	//lightingShader.Use();
@@ -663,11 +698,11 @@ int main()
 
 		glBindVertexArray(testVAO);
 		glm::mat4 model(1);              //Fondo
-		//model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.450f)); 
-		//model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.001f));
-		////model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.450f)); 
+		model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.001f));
+		//model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
 		model = glm::mat4(1.0f);      //Pared Izquierda
@@ -682,50 +717,177 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
+		//Frente de primer piso izquierdo
+
 		model = glm::mat4(1.0f);      //Frente I I
-		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, 0.450f));
-		model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.005f));
-		//model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
+		model = glm::translate(model, glm::vec3(-0.398f, -1.66f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.465f, 0.185f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Frente I II
+		model = glm::translate(model, glm::vec3(-0.60f, -1.505f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.057f, 0.125f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente I III
+		model = glm::translate(model, glm::vec3(-0.203f, -1.505f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.075f, 0.125f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+
+		model = glm::mat4(1.0f);      //Frente I IV
+		model = glm::translate(model, glm::vec3(-0.398f, -1.386f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.465f, 0.117f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//Frente de primer piso derecho
+
+		model = glm::mat4(1.0f);      //Frente I I
+		model = glm::translate(model, glm::vec3(0.215f, -1.66f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.446f, 0.185f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente I II
+		model = glm::translate(model, glm::vec3(0.017f, -1.505f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.050f, 0.125f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente I III
+		model = glm::translate(model, glm::vec3(0.407f, -1.505f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.064f, 0.125f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente I IV
+		model = glm::translate(model, glm::vec3(0.215f, -1.386f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.446f, 0.117f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//Primer piso
+		model = glm::mat4(1.0f);      //Frente II I
+		model = glm::translate(model, glm::vec3(-0.095f, -1.26f, 0.450f));
+		model = glm::scale(model, glm::vec3(1.0725f, 0.138f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Frente II II
+		model = glm::translate(model, glm::vec3(-0.095f, -0.94f, 0.450f));
+		model = glm::scale(model, glm::vec3(1.0725f, 0.058f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Frente II III
+		model = glm::translate(model, glm::vec3(-0.555f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.147f, 0.225f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Frente II IV
+		model = glm::translate(model, glm::vec3(-0.23f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.22f, 0.225f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente II V
+		model = glm::translate(model, glm::vec3(0.125f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.215f, 0.225f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Frente II VI
+		model = glm::translate(model, glm::vec3(0.405f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.075f, 0.225f, 0.005f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
-		//model = glm::mat4(1.0f);      //Piso I I
-		//model = glm::translate(model, glm::vec3(-0.304f, -1.33f, -0.000f));
-		//model = glm::scale(model, glm::vec3(0.652f, 0.009f, 0.901f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//model = glm::mat4(1.0f);      //Piso I II
-		//model = glm::translate(model, glm::vec3(0.23f, -1.33f, 0.069f));
-		//model = glm::scale(model, glm::vec3(0.416f, 0.009f, 0.765f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //Piso I I
+		model = glm::translate(model, glm::vec3(-0.304f, -1.33f, -0.000f));
+		model = glm::scale(model, glm::vec3(0.652f, 0.009f, 0.901f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//model = glm::mat4(1.0f);      //Piso I III
-		//model = glm::translate(model, glm::vec3(0.385f, -1.33f, -0.37f));
-		//model = glm::scale(model, glm::vec3(0.11f, 0.009f, 0.15f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //Piso I II
+		model = glm::translate(model, glm::vec3(0.23f, -1.33f, 0.069f));
+		model = glm::scale(model, glm::vec3(0.416f, 0.009f, 0.765f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Piso I III
+		model = glm::translate(model, glm::vec3(0.385f, -1.33f, -0.37f));
+		model = glm::scale(model, glm::vec3(0.11f, 0.009f, 0.15f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-		model = glm::mat4(1.0f);      //Piso 
+		model = glm::mat4(1.0f);      //Piso II
 		model = glm::translate(model, glm::vec3(-0.095f, -1.75f, 0.001f));
 		model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//glBindTexture(GL_TEXTURE_2D, texture3);
 
-		//model = glm::mat4(1.0f);      //Techo 
-		//model = glm::translate(model, glm::vec3(-0.095f, -0.91f, 0.001f));
-		//model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		glBindTexture(GL_TEXTURE_2D, texture3);
+
+		model = glm::mat4(1.0f);      //Techo 
+		model = glm::translate(model, glm::vec3(-0.095f, -0.91f, 0.001f));
+		model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		glBindTexture(GL_TEXTURE_2D, texture4);
+		//Espejo
+		model = glm::mat4(1.0f);      //Marco superior 
+		model = glm::translate(model, glm::vec3(0.4375f, -1.0225f, -0.012f));
+		model = glm::scale(model, glm::vec3(0.0055f, 0.01f, 0.13f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Marco inferior 
+		model = glm::translate(model, glm::vec3(0.4375f, -1.153f, -0.012f));
+		model = glm::scale(model, glm::vec3(0.0055f, 0.01f, 0.13f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+	
+
+		model = glm::mat4(1.0f);      //Marco lat. izq 
+		model = glm::translate(model, glm::vec3(0.4375f, -1.09f, -0.07f));
+		model = glm::scale(model, glm::vec3(0.0055f, 0.135f, 0.0125f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //Marco lat. der 
+		model = glm::translate(model, glm::vec3(0.4375f, -1.09f, 0.046f));
+		model = glm::scale(model, glm::vec3(0.0055f, 0.135f, 0.0125f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//Vidrio
+		glBindTexture(GL_TEXTURE_2D, texture5);
+
+		model = glm::mat4(1.0f);      //Marco lat. der 
+		model = glm::translate(model, glm::vec3(0.4375f, -1.09f, -0.01f));
+		model = glm::scale(model, glm::vec3(0.0052f, 0.135f, 0.11f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindVertexArray(0);
-
 
 		glBindVertexArray(VAO);
 		model = glm::mat4(1.0f);
@@ -739,7 +901,6 @@ int main()
 		tmp = model = glm::translate(model, glm::vec3(95.005f, -2.5f, 45.37f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
 		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Torso.Draw(lightingShader);
@@ -770,107 +931,107 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		ourModel.Draw(lightingShader);
 
-		////Gavinete1
-		//model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//model2.Draw(lightingShader);
+		//Gavinete1
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		model2.Draw(lightingShader);
 
-		////Gavinete2
-		//model = glm::mat4(1.0f);
-		//model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//gabinete2.Draw(lightingShader);
+		//Gavinete2
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		gabinete2.Draw(lightingShader);
 
-		////Sofa
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//sofa.Draw(lightingShader);
+		//Sofa
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.42f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.002f, 0.002f, 0.002));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		sofa.Draw(lightingShader);
 
-		////Calentador
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//calentador.Draw(lightingShader);
+		//Calentador
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.025f, -1.27f, 0.40f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0015f, 0.0015f, 0.0015f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(00.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		calentador.Draw(lightingShader);
 
-		////Mesa
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//mesa.Draw(lightingShader);
+		//Mesa
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.16f, -1.33f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0002f, 0.0002f, 0.0002f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		mesa.Draw(lightingShader);
 
-		////Espejo
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//espejo.Draw(lightingShader);
+		//Espejo
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.40f, -1.33f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		espejo.Draw(lightingShader);
 
-		////Limpieza
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.35f, -1.33f, -0.15f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.025f));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//limpieza.Draw(lightingShader);
+		//Limpieza
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.35f, -1.33f, -0.15f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.025f));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		limpieza.Draw(lightingShader);
 
-		////Cocina
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(-0.12f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.020));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//cocina.Draw(lightingShader);
+		//Cocina
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(-0.12f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.025f, 0.025f, 0.020));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		cocina.Draw(lightingShader);
 
-		////Mesa Restaurant
-		//	model = glm::mat4(1.0f);
-		//	//glm::mat4 model(1);
-		//	model = glm::translate(model, glm::vec3(0.0f, -1.75f, -0.1f)); // Translate it down a bit so it's at the center of the scene
-		//	model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-		//	model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//	mesa_restaurant.Draw(lightingShader);
+		//Mesa Restaurant
+			model = glm::mat4(1.0f);
+			//glm::mat4 model(1);
+			model = glm::translate(model, glm::vec3(0.0f, -1.75f, -0.1f)); // Translate it down a bit so it's at the center of the scene
+			model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+			model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			mesa_restaurant.Draw(lightingShader);
 
 		////Arcade
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//arcade.Draw(lightingShader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arcade.Draw(lightingShader);
 
 		//////--Animation section--//
-		//model = glm::mat4(1.0f);
-		////glm::mat4 model(1);
-		//model = glm::translate(model, glm::vec3(rotX, -1.75f, rotY)); // Translate it down a bit so it's at the center of the scene
-		//model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
-		//model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//silla.Draw(lightingShader);
+		model = glm::mat4(1.0f);
+		//glm::mat4 model(1);
+		model = glm::translate(model, glm::vec3(rotX, -1.75f, rotY)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.015));	// It's a bit too big for our scene, so scale it down
+		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		silla.Draw(lightingShader);
 
 		model = glm::mat4(1.0f);
 		//glm::mat4 model(1);
-		model = glm::translate(model, glm::vec3(-0.17f, -1.76f, 0.45f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.0170f, 0.021f, 0.0125f));	// It's a bit too big for our scene, so scale it down
+		model = glm::translate(model, glm::vec3(-0.17f, -1.75f, 0.45f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.0165f, 0.02f, 0.0125f));	// It's a bit too big for our scene, so scale it down
 		model = glm::rotate(model, glm::radians(rotA), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		puertaVidrio.Draw(lightingShader);
@@ -1097,12 +1258,12 @@ void DoMovement()
 	if (keys[GLFW_KEY_Q])
 	{
 		if (rotA <= 260)
-			rotA = rotA + 0.1;
+			rotA = rotA + 0.2;
 	}
 	if (keys[GLFW_KEY_W])
 	{
 		if (rotA >= 180)
-			rotA = rotA - 0.1;
+			rotA = rotA - 0.2;
 	}
 	if (keys[GLFW_KEY_A])
 	{

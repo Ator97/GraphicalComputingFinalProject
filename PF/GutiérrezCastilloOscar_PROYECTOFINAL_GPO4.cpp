@@ -194,8 +194,6 @@ int main()
 	Model PiernaIzq((char*)"Models/hora.obj");
 	Model Torso((char*)"Models/reloj.obj");
 	Model ourModel((char *)"Models/Tienda/tienda.obj");
-	Model model2((char *)"Models/Gabinete1/gabinete1.obj");
-	Model gabinete2((char *)"Models/Gabinete1/gabinete1.obj");
 	Model sofa((char *)"Models/Sofa/sofa.obj");
 	Model calentador((char *)"Models/Calentador/calentador.obj");
 	Model mesa((char *)"Models/Mesa/mesa.obj");
@@ -931,21 +929,6 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		ourModel.Draw(lightingShader);
 
-		//Gavinete1
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.37f, -1.33f, 0.17f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(92.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		model2.Draw(lightingShader);
-
-		//Gavinete2
-		model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(-0.155f, -1.33f, 0.4f)); // Translate it down a bit so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.004f, 0.004f, 0.004));	// It's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		gabinete2.Draw(lightingShader);
 
 		//Sofa
 		model = glm::mat4(1.0f);

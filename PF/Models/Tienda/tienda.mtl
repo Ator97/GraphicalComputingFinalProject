@@ -113,6 +113,61 @@ Ni 1.00
 Ks 0.00 0.00 0.00
 map_Ks spec.jpg
 Ns 573.10
+newmtl pasted__lambert3SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.17 0.17 0.17
+Tf 1.00 1.00 1.00
+Ni 1.03
+newmtl pasted__lambert4SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd can1_texture.jpg
+Ni 1.39
+newmtl pasted__lambert5SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd glass2_texture.jpg
+Ni 1.00
+newmtl pasted__lambert6SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 0.97 0.97 0.97
+map_Kd caron1_texture.jpg
+Ni 1.00
+newmtl pasted__lambert8SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd white2_texture.png
+Ni 1.00
+newmtl pasted__lambert9SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd -mm 0 0.408759 green1_texture.jpg
+Ni 1.00
+newmtl pasted__lambert11SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.09 0.10
+Tf 0.61 0.61 0.61
+map_Kd glass1_texture.jpg
+Ni 1.00
+newmtl pasted__lambert12SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.65 0.65 0.65
+Tf 1.00 1.00 1.00
+map_Kd caron1_texture.jpg
+Ni 1.00
 newmtl pasted__lambert65SG
 illum 4
 Kd 0.00 0.00 0.00

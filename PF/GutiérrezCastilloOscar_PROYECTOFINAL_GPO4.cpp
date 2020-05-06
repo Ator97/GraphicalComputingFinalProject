@@ -813,6 +813,131 @@ int main()
 
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
+		//Ventanas primer piso
+
+		//Ventana Central
+		model = glm::mat4(1.0f);      //V I I
+		model = glm::translate(model, glm::vec3(-0.051f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I II
+		model = glm::translate(model, glm::vec3(-0.051f, -0.975f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I III
+		model = glm::translate(model, glm::vec3(-0.051f, -1.187f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(0.010f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f,  0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(-0.111f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//Ventana Izquierda
+		model = glm::mat4(1.0f);      //V I I
+		model = glm::translate(model, glm::vec3(-0.4025f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.125f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I II
+		model = glm::translate(model, glm::vec3(-0.4025f, -0.975f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.125f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I III
+		model = glm::translate(model, glm::vec3(-0.4025f, -1.187f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.125f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(-0.475f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(-0.345f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//Ventana Derecha
+		model = glm::mat4(1.0f);      //V I I
+		model = glm::translate(model, glm::vec3(0.3f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I II
+		model = glm::translate(model, glm::vec3(0.3f, -0.975f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I III
+		model = glm::translate(model, glm::vec3(0.3f, -1.187f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(0.36f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(0.24f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//Ventas planta baja
+		//Ventana derecha
+		//model = glm::mat4(1.0f);      //V I II
+		//model = glm::translate(model, glm::vec3(0.3f, -0.975f, 0.450f));
+		//model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);      //V I III
+		//model = glm::translate(model, glm::vec3(0.3f, -1.187f, 0.450f));
+		//model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);      //V I IV
+		//model = glm::translate(model, glm::vec3(0.36f, -1.079f, 0.450f));
+		//model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//model = glm::mat4(1.0f);      //V I IV
+		//model = glm::translate(model, glm::vec3(0.24f, -1.079f, 0.450f));
+		//model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		//
 
 		model = glm::mat4(1.0f);      //Piso I I
 		model = glm::translate(model, glm::vec3(-0.304f, -1.33f, -0.000f));
@@ -838,6 +963,37 @@ int main()
 		model = glm::scale(model, glm::vec3(1.075f, 0.005f, 0.901f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Pared del primer piso I
+		model = glm::translate(model, glm::vec3(-0.2f, -1.120f, 0.2f));
+		model = glm::scale(model, glm::vec3(0.009f, 0.41f,  0.50f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Pared del primer piso II
+		model = glm::translate(model, glm::vec3(-0.2f, -1.120f, -0.35f));
+		model = glm::scale(model, glm::vec3(0.009f, 0.41f, 0.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+
+
+		model = glm::mat4(1.0f);      //Pared del primer piso I
+		model = glm::translate(model, glm::vec3(0.017f, -1.55f, 0.35));
+		model = glm::scale(model, glm::vec3(0.009f, 0.43f, 0.2f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+		model = glm::mat4(1.0f);      //Pared del primer piso II
+		model = glm::translate(model, glm::vec3(0.017f, -1.55f, -0.205f));
+		model = glm::scale(model, glm::vec3(0.009f, 0.43f, 0.5f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
 
 
 
@@ -895,7 +1051,7 @@ int main()
 		//Carga de modelo 
 		//Personaje
 		view = camera.GetViewMatrix();
-		//glm::mat4 model(1);
+		////glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(95.005f, -2.5f, 45.37f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -993,7 +1149,7 @@ int main()
 			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 			mesa_restaurant.Draw(lightingShader);
 
-		////Arcade
+		//Arcade
 		model = glm::mat4(1.0f);
 		//glm::mat4 model(1);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.1f)); // Translate it down a bit so it's at the center of the scene

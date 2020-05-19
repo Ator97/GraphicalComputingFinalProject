@@ -22,6 +22,7 @@
 #include "Texture.h"
 #include "stb_image.h"
 
+
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
@@ -31,6 +32,9 @@ void animacion();
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
+
+//Gif
+int gif = 0.0;
 
 // Camera
 Camera  camera(glm::vec3(-0.5f, -1.0f, 1.0f));
@@ -145,7 +149,7 @@ int main()
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
 	// Create a GLFWwindow object that we can use for GLFW's functions
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Practica 10", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Proyecto Final", nullptr, nullptr);
 
 	if (nullptr == window)
 	{
@@ -496,6 +500,33 @@ int main()
 	glGenTextures(1, &texture4);
 	GLuint texture5;
 	glGenTextures(1, &texture5);
+
+	GLuint frame00;
+	glGenTextures(1, &frame00);
+	GLuint frame01;
+	glGenTextures(1, &frame01);
+	GLuint frame02;
+	glGenTextures(1, &frame02);
+	GLuint frame03;
+	glGenTextures(1, &frame03);
+	GLuint frame04;
+	glGenTextures(1, &frame04);
+	GLuint frame05;
+	glGenTextures(1, &frame05);
+	GLuint frame06;
+	glGenTextures(1, &frame06);
+	GLuint frame07;
+	glGenTextures(1, &frame07);
+	GLuint frame08;
+	glGenTextures(1, &frame08);
+	GLuint frame09;
+	glGenTextures(1, &frame09);
+	GLuint frame10;
+	glGenTextures(1, &frame10);
+	GLuint frame11;
+	glGenTextures(1, &frame11);
+
+
 	int textureWidth, textureHeight, nrChannels;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char *image;
@@ -584,7 +615,197 @@ int main()
 	}
 	stbi_image_free(image);
 
+	image = stbi_load("./gif/frame_00.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame00);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
 
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_01.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame01);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_02.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame02);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_03.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame03);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_04.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame04);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_05.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame05);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_06.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame06);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_07.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame07);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_08.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame08);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_09.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame09);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_10.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame10);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
+
+	image = stbi_load("./gif/frame_11.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+	glBindTexture(GL_TEXTURE_2D, frame11);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+	if (image)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+	}
+	else
+	{
+		std::cout << "Failed to load texture" << std::endl;
+	}
+	stbi_image_free(image);
 	//// Set texture units
 	//lightingShader.Use();
 	//glUniform1i(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0);
@@ -696,7 +917,8 @@ int main()
 
 		glBindVertexArray(testVAO);
 		glm::mat4 model(1);              //Fondo
-		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.450f)); 
+
+		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.452f)); 
 		model = glm::scale(model, glm::vec3(1.075f, 0.84f, 0.001f));
 		//model = glm::translate(model, glm::vec3(-0.1f, -1.58f,1.58f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -912,32 +1134,32 @@ int main()
 
 		//Ventas planta baja
 		//Ventana derecha
-		//model = glm::mat4(1.0f);      //V I II
-		//model = glm::translate(model, glm::vec3(0.3f, -0.975f, 0.450f));
-		//model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //V I II
+		model = glm::translate(model, glm::vec3(0.3f, -0.975f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//model = glm::mat4(1.0f);      //V I III
-		//model = glm::translate(model, glm::vec3(0.3f, -1.187f, 0.450f));
-		//model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //V I III
+		model = glm::translate(model, glm::vec3(0.3f, -1.187f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.135f, 0.009f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//model = glm::mat4(1.0f);      //V I IV
-		//model = glm::translate(model, glm::vec3(0.36f, -1.079f, 0.450f));
-		//model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(0.36f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
-		//model = glm::mat4(1.0f);      //V I IV
-		//model = glm::translate(model, glm::vec3(0.24f, -1.079f, 0.450f));
-		//model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glDrawArrays(GL_TRIANGLES, 0, 36);
+		model = glm::mat4(1.0f);      //V I IV
+		model = glm::translate(model, glm::vec3(0.24f, -1.079f, 0.450f));
+		model = glm::scale(model, glm::vec3(0.0160f, 0.22f, 0.005f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
-		//
+		
 
 		model = glm::mat4(1.0f);      //Piso I I
 		model = glm::translate(model, glm::vec3(-0.304f, -1.33f, -0.000f));
@@ -1040,6 +1262,42 @@ int main()
 		model = glm::scale(model, glm::vec3(0.0052f, 0.135f, 0.11f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+		
+		if (gif == 0)
+			glBindTexture(GL_TEXTURE_2D, frame00);
+		else if (gif == 1)
+			glBindTexture(GL_TEXTURE_2D, frame01);
+		else if (gif == 2)
+			glBindTexture(GL_TEXTURE_2D, frame02);
+		else if (gif == 3)
+			glBindTexture(GL_TEXTURE_2D, frame03);
+		else if (gif == 4)
+			glBindTexture(GL_TEXTURE_2D, frame04);
+		else if (gif == 5)
+			glBindTexture(GL_TEXTURE_2D, frame05);
+		else if (gif == 6)
+			glBindTexture(GL_TEXTURE_2D, frame06);
+		else if (gif == 7)
+			glBindTexture(GL_TEXTURE_2D, frame07);
+		else if (gif == 8)
+			glBindTexture(GL_TEXTURE_2D, frame08);
+		else if (gif == 9)
+			glBindTexture(GL_TEXTURE_2D, frame09);
+		else if (gif == 10)
+			glBindTexture(GL_TEXTURE_2D, frame10);
+		else if (gif == 11)
+			glBindTexture(GL_TEXTURE_2D, frame11);
+		else if (gif >= 12) {
+			gif = 0;
+			glBindTexture(GL_TEXTURE_2D, frame00);
+		}
+		gif = gif + 1;
+		model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(-0.543f, -1.5f, 0.355f));
+		model = glm::scale(model, glm::vec3(0.15f, 0.08f, 0.001f));
+		model = glm::rotate(model, glm::radians(180.0f),glm::vec3(0.00f, 1.00f, 0.00f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 
 		glBindVertexArray(0);
 
@@ -1051,7 +1309,7 @@ int main()
 		//Carga de modelo 
 		//Personaje
 		view = camera.GetViewMatrix();
-		////glm::mat4 model(1);
+		//glm::mat4 model(1);
 		tmp = model = glm::translate(model, glm::vec3(95.005f, -2.5f, 45.37f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -1174,6 +1432,10 @@ int main()
 		model = glm::rotate(model, glm::radians(rotA), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		puertaVidrio.Draw(lightingShader);
+
+		glBindTexture(GL_TEXTURE_2D, texture3);
+
+
 
 		glBindVertexArray(0);
 

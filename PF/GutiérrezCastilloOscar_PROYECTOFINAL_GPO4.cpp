@@ -29,6 +29,7 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 void animacion();
 
+
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
@@ -62,7 +63,7 @@ GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
 // Keyframes
-float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotRodIzq = 0, rotRodDer = 0;
+float posX = PosIni.x, posY = PosIni.y, posZ = PosIni.z, rotManecilla1 = 0, rotManecilla2 = 0;
 
 #define MAX_FRAMES 9
 int i_max_steps = 190;
@@ -77,9 +78,9 @@ typedef struct _frame
 	float incX;		//Variable para IncrementoX
 	float incY;		//Variable para IncrementoY
 	float incZ;		//Variable para IncrementoZ
-	float rotRodIzq;
+	float rotManecilla1;
 	float rotInc;
-	float rotRodDer;
+	float rotManecilla2;
 	float rotInc2;
 }FRAME;
 
@@ -108,8 +109,8 @@ void saveFrame(void)
 	KeyFrame[FrameIndex].posY = posY;
 	KeyFrame[FrameIndex].posZ = posZ;
 
-	KeyFrame[FrameIndex].rotRodIzq = rotRodIzq;
-	KeyFrame[FrameIndex].rotRodDer = rotRodDer;
+	KeyFrame[FrameIndex].rotManecilla1 = rotManecilla1;
+	KeyFrame[FrameIndex].rotManecilla2 = rotManecilla2;
 
 	FrameIndex++;
 }
@@ -120,8 +121,8 @@ void resetElements(void)
 	posY = KeyFrame[0].posY;
 	posZ = KeyFrame[0].posZ;
 
-	rotRodIzq = KeyFrame[0].rotRodIzq;
-	rotRodDer = KeyFrame[0].rotRodDer;
+	rotManecilla1 = KeyFrame[0].rotManecilla1;
+	rotManecilla2 = KeyFrame[0].rotManecilla2;
 }
 
 void interpolation(void)
@@ -130,8 +131,8 @@ void interpolation(void)
 	KeyFrame[playIndex].incY = (KeyFrame[playIndex + 1].posY - KeyFrame[playIndex].posY) / i_max_steps;
 	KeyFrame[playIndex].incZ = (KeyFrame[playIndex + 1].posZ - KeyFrame[playIndex].posZ) / i_max_steps;
 
-	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
-	KeyFrame[playIndex].rotInc2 = (KeyFrame[playIndex + 1].rotRodDer - KeyFrame[playIndex].rotRodDer) / i_max_steps;
+	KeyFrame[playIndex].rotInc = (KeyFrame[playIndex + 1].rotManecilla1 - KeyFrame[playIndex].rotManecilla1) / i_max_steps;
+	KeyFrame[playIndex].rotInc2 = (KeyFrame[playIndex + 1].rotManecilla2 - KeyFrame[playIndex].rotManecilla2) / i_max_steps;
 }
 
 
@@ -194,8 +195,8 @@ int main()
 	Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
 	//Load Models
-	Model PiernaDer((char*)"Models/segundero.obj");
-	Model PiernaIzq((char*)"Models/hora.obj");
+	Model segundero((char*)"Models/segundero.obj");
+	Model hora((char*)"Models/hora.obj");
 	Model Torso((char*)"Models/reloj.obj");
 	Model ourModel((char *)"Models/Tienda/tienda.obj");
 	Model sofa((char *)"Models/Sofa/sofa.obj");
@@ -217,9 +218,9 @@ int main()
 		KeyFrame[i].incX = 0;
 		KeyFrame[i].incY = 0;
 		KeyFrame[i].incZ = 0;
-		KeyFrame[i].rotRodIzq = 0;
+		KeyFrame[i].rotManecilla1 = 0;
 		KeyFrame[i].rotInc = 0;
-		KeyFrame[i].rotRodDer = 0;
+		KeyFrame[i].rotManecilla2 = 0;
 		KeyFrame[i].rotInc2 = 0;
 	}
 
@@ -402,7 +403,7 @@ int main()
 	GLuint cubemapTexture = TextureLoading::LoadCubemap(faces);
 
 
-	GLfloat testVertices[] =
+	GLfloat openglVertices[] =
 	{
 		// Positions            // Normals              // Texture Coords
 		//inf izq
@@ -466,16 +467,16 @@ int main()
 	};
 
 	// First, set the container's VAO (and VBO)
-	GLuint testVBO, testVAO, testEBO;
-	glGenVertexArrays(1, &testVAO);
-	glGenBuffers(1, &testVBO);
-	glGenBuffers(1, &testEBO);
+	GLuint openglVBO, openglVAO, openglEBO;
+	glGenVertexArrays(1, &openglVAO);
+	glGenBuffers(1, &openglVBO);
+	glGenBuffers(1, &openglEBO);
 
-	glBindVertexArray(testVAO);
-	glBindBuffer(GL_ARRAY_BUFFER, testVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(testVertices), testVertices, GL_STATIC_DRAW);
+	glBindVertexArray(openglVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, openglVBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(openglVertices), openglVertices, GL_STATIC_DRAW);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, testEBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, openglEBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(testIndices), testIndices, GL_STATIC_DRAW);
 
 	// Position attribute
@@ -500,7 +501,6 @@ int main()
 	glGenTextures(1, &texture4);
 	GLuint texture5;
 	glGenTextures(1, &texture5);
-
 	GLuint frame00;
 	glGenTextures(1, &frame00);
 	GLuint frame01;
@@ -806,10 +806,6 @@ int main()
 		std::cout << "Failed to load texture" << std::endl;
 	}
 	stbi_image_free(image);
-	//// Set texture units
-	//lightingShader.Use();
-	//glUniform1i(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0);
-
 
 	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
 
@@ -915,7 +911,7 @@ int main()
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);
 
-		glBindVertexArray(testVAO);
+		glBindVertexArray(openglVAO);
 		glm::mat4 model(1);              //Fondo
 
 		model = glm::translate(model, glm::vec3(-0.095f, -1.33f, -0.452f)); 
@@ -1315,25 +1311,25 @@ int main()
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		Torso.Draw(lightingShader);
+		segundero.Draw(lightingShader);
 
-		//Pierna Izq
+		//Manecilla 1
 		view = camera.GetViewMatrix();
 		model = glm::translate(tmp, glm::vec3(0.045f, 0.048f, 0.00f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));
-		model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-rotManecilla1), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		PiernaDer.Draw(lightingShader);
+		hora.Draw(lightingShader);
 
-		////Pierna Der
+		////Manecilla 2
 		view = camera.GetViewMatrix();
 		model = glm::translate(tmp, glm::vec3(0.045f, 0.048f, 0.00f));
 		model = glm::translate(model, glm::vec3(posX, posY, posZ));
 		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 		model = glm::scale(model, glm::vec3(0.005f, 0.005f, 0.005f));
-		model = glm::rotate(model, glm::radians(-rotRodDer), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-rotManecilla2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		PiernaIzq.Draw(lightingShader);
 
@@ -1342,7 +1338,6 @@ int main()
 		model = glm::scale(model, glm::vec3(0.02f, 0.02f, 0.02f));	// It's a bit too big for our scene, so scale it down
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		ourModel.Draw(lightingShader);
-
 
 		//Sofa
 		model = glm::mat4(1.0f);
@@ -1506,7 +1501,7 @@ int main()
 void animacion()
 {
 
-	//Movimiento del personaje
+	//Movimiento del reloj
 
 	if (play)
 	{
@@ -1533,8 +1528,8 @@ void animacion()
 			posY += KeyFrame[playIndex].incY;
 			posZ += KeyFrame[playIndex].incZ;
 
-			rotRodIzq += KeyFrame[playIndex].rotInc;
-			rotRodDer += KeyFrame[playIndex].rotInc2;
+			rotManecilla1 += KeyFrame[playIndex].rotInc;
+			rotManecilla2 += KeyFrame[playIndex].rotInc2;
 
 			i_curr_steps++;
 		}
@@ -1550,47 +1545,28 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 	{
 		if (play == false && (FrameIndex > 1))
 		{
-
 			resetElements();
 			//First Interpolation				
 			interpolation();
-
 			play = true;
 			playIndex = 0;
 			i_curr_steps = 0;
 		}
 		else
-		{
 			play = false;
-		}
-
 	}
-
 	if (keys[GLFW_KEY_K])
-	{
 		if (FrameIndex < MAX_FRAMES)
-		{
 			saveFrame();
-		}
-
-	}
-
-
 	if (GLFW_KEY_ESCAPE == key && GLFW_PRESS == action)
-	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	}
 
 	if (key >= 0 && key < 1024)
 	{
 		if (action == GLFW_PRESS)
-		{
 			keys[key] = true;
-		}
 		else if (action == GLFW_RELEASE)
-		{
 			keys[key] = false;
-		}
 	}
 
 	if (keys[GLFW_KEY_SPACE])
@@ -1605,20 +1581,17 @@ void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode
 
 void MouseCallback(GLFWwindow *window, double xPos, double yPos)
 {
-
 	if (firstMouse)
 	{
 		lastX = xPos;
 		lastY = yPos;
 		firstMouse = false;
 	}
-
 	GLfloat xOffset = xPos - lastX;
 	GLfloat yOffset = lastY - yPos;  // Reversed since y-coordinates go from bottom to left
 
 	lastX = xPos;
 	lastY = yPos;
-
 	camera.ProcessMouseMovement(xOffset, yOffset);
 }
 
@@ -1626,89 +1599,53 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos)
 void DoMovement()
 {
 	if (keys[GLFW_KEY_2])
-	{
-		rotRodIzq += 0.1f;
-	}
+		rotManecilla1 += 0.1f;
 	if (keys[GLFW_KEY_3])
-	{
-		rotRodIzq -= 0.1f;
-	}
+		rotManecilla1 -= 0.1f;
 	if (keys[GLFW_KEY_4])
-	{
-		rotRodDer += 0.1f;
-	}
+		rotManecilla2 += 0.1f;
 	if (keys[GLFW_KEY_5])
-	{
-		rotRodDer -= 0.1f;
-	}
+		rotManecilla2 -= 0.1f;
 
-
-	//Mov Personaje
+	//Mov Reloj
 	if (keys[GLFW_KEY_H])
-	{
 		posZ += 1;
-	}
 	if (keys[GLFW_KEY_G])
-	{
 		posX -= 1;
-	}
 	if (keys[GLFW_KEY_J])
-	{
 		posX += 1;
-	}
 	if (keys[GLFW_KEY_Q])
-	{
 		if (rotA <= 260)
 			rotA = rotA + 0.2;
-	}
 	if (keys[GLFW_KEY_W])
-	{
 		if (rotA >= 180)
 			rotA = rotA - 0.2;
-	}
 	if (keys[GLFW_KEY_A])
-	{
 		if (rotX > limN)
 			rotX = rotX - 0.01;
-	}
 	if (keys[GLFW_KEY_S])
-	{
 		if (rotX < limP)
 			rotX = rotX + 0.01;
-	}
-	if (keys[GLFW_KEY_D]) {
+	if (keys[GLFW_KEY_D])
 		if (rotY < -0.5) {
 			rotY = rotY + 0.01;
 			limP = limP + 0.001; //Abrimos abanico de X
 			limN = limN - 0.001;
 		}
-	}
-	if (keys[GLFW_KEY_F]) {
+	if (keys[GLFW_KEY_F])
 		if (rotY > -0.7) {
 			rotY = rotY - 0.01;
 			limP = limP - 0.001; //Cerramos abanico de X
 			limN = limN + 0.001;
 		}
-	}
-
 	// Camera controls
 	if (keys[GLFW_KEY_UP])
-	{
 		camera.ProcessKeyboard(FORWARD, deltaTime);
-	}
-
 	if (keys[GLFW_KEY_DOWN])
-	{
 		camera.ProcessKeyboard(BACKWARD, deltaTime);
-	}
-
 	if (keys[GLFW_KEY_LEFT])
-	{
 		camera.ProcessKeyboard(LEFT, deltaTime);
-	}
-
 	if (keys[GLFW_KEY_RIGHT])
-	{
 		camera.ProcessKeyboard(RIGHT, deltaTime);
 	}
 }
